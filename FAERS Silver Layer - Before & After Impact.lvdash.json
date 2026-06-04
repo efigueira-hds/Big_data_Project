@@ -1,0 +1,719 @@
+{
+  "datasets": [
+    {
+      "name": "demo_null_comparison",
+      "displayName": "DEMO - Null Counts Comparison",
+      "config": {
+        "version": "1.1",
+        "source": "WITH bronze_nulls AS (\n  SELECT \n    'Bronze' AS layer,\n    COUNT(CASE WHEN sex IS NULL THEN 1 END) AS sex_nulls,\n    COUNT(CASE WHEN occp_cod IS NULL THEN 1 END) AS occp_cod_nulls,\n    COUNT(CASE WHEN reporter_country IS NULL THEN 1 END) AS reporter_country_nulls,\n    COUNT(CASE WHEN e_sub IS NULL THEN 1 END) AS e_sub_nulls,\n    COUNT(CASE WHEN occr_country IS NULL THEN 1 END) AS occr_country_nulls,\n    COUNT(CASE WHEN age_cod IS NULL THEN 1 END) AS age_cod_nulls,\n    COUNT(CASE WHEN age_grp IS NULL THEN 1 END) AS age_grp_nulls,\n    COUNT(CASE WHEN wt_cod IS NULL THEN 1 END) AS wt_cod_nulls,\n    COUNT(CASE WHEN i_f_code IS NULL THEN 1 END) AS i_f_code_nulls,\n    COUNT(CASE WHEN rept_cod IS NULL THEN 1 END) AS rept_cod_nulls,\n    COUNT(CASE WHEN mfr_sndr IS NULL THEN 1 END) AS mfr_sndr_nulls,\n    COUNT(CASE WHEN mfr_num IS NULL THEN 1 END) AS mfr_num_nulls\n  FROM delta.`/Volumes/main/default/faers_data/delta/bronze/demo`\n), silver_nulls AS (\n  SELECT \n    'Silver' AS layer,\n    COUNT(CASE WHEN sex IS NULL THEN 1 END) AS sex_nulls,\n    COUNT(CASE WHEN occp_cod IS NULL THEN 1 END) AS occp_cod_nulls,\n    COUNT(CASE WHEN reporter_country IS NULL THEN 1 END) AS reporter_country_nulls,\n    COUNT(CASE WHEN e_sub IS NULL THEN 1 END) AS e_sub_nulls,\n    COUNT(CASE WHEN occr_country IS NULL THEN 1 END) AS occr_country_nulls,\n    COUNT(CASE WHEN age_cod IS NULL THEN 1 END) AS age_cod_nulls,\n    COUNT(CASE WHEN age_grp IS NULL THEN 1 END) AS age_grp_nulls,\n    COUNT(CASE WHEN wt_cod IS NULL THEN 1 END) AS wt_cod_nulls,\n    COUNT(CASE WHEN i_f_code IS NULL THEN 1 END) AS i_f_code_nulls,\n    COUNT(CASE WHEN rept_cod IS NULL THEN 1 END) AS rept_cod_nulls,\n    COUNT(CASE WHEN mfr_sndr IS NULL THEN 1 END) AS mfr_sndr_nulls,\n    COUNT(CASE WHEN mfr_num IS NULL THEN 1 END) AS mfr_num_nulls\n  FROM delta.`/Volumes/main/default/faers_data/delta/silver/demo`\n) SELECT * FROM bronze_nulls UNION ALL SELECT * FROM silver_nulls\n",
+        "dimensions": [
+          {
+            "name": "layer",
+            "expr": "layer"
+          }
+        ],
+        "measures": [
+          {
+            "name": "sex_nulls",
+            "expr": "SUM(sex_nulls)"
+          },
+          {
+            "name": "occp_cod_nulls",
+            "expr": "SUM(occp_cod_nulls)"
+          },
+          {
+            "name": "reporter_country_nulls",
+            "expr": "SUM(reporter_country_nulls)"
+          },
+          {
+            "name": "e_sub_nulls",
+            "expr": "SUM(e_sub_nulls)"
+          },
+          {
+            "name": "occr_country_nulls",
+            "expr": "SUM(occr_country_nulls)"
+          },
+          {
+            "name": "age_cod_nulls",
+            "expr": "SUM(age_cod_nulls)"
+          },
+          {
+            "name": "age_grp_nulls",
+            "expr": "SUM(age_grp_nulls)"
+          },
+          {
+            "name": "wt_cod_nulls",
+            "expr": "SUM(wt_cod_nulls)"
+          },
+          {
+            "name": "i_f_code_nulls",
+            "expr": "SUM(i_f_code_nulls)"
+          },
+          {
+            "name": "rept_cod_nulls",
+            "expr": "SUM(rept_cod_nulls)"
+          },
+          {
+            "name": "mfr_sndr_nulls",
+            "expr": "SUM(mfr_sndr_nulls)"
+          },
+          {
+            "name": "mfr_num_nulls",
+            "expr": "SUM(mfr_num_nulls)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "drug_null_comparison",
+      "displayName": "DRUG - Null Counts Comparison",
+      "config": {
+        "version": "1.1",
+        "source": "WITH bronze_nulls AS (\n  SELECT \n    'Bronze' AS layer,\n    COUNT(CASE WHEN role_cod IS NULL THEN 1 END) AS role_cod_nulls,\n    COUNT(CASE WHEN route IS NULL THEN 1 END) AS route_nulls,\n    COUNT(CASE WHEN dechal IS NULL THEN 1 END) AS dechal_nulls,\n    COUNT(CASE WHEN rechal IS NULL THEN 1 END) AS rechal_nulls,\n    COUNT(CASE WHEN dose_freq IS NULL THEN 1 END) AS dose_freq_nulls,\n    COUNT(CASE WHEN prod_ai IS NULL THEN 1 END) AS prod_ai_nulls,\n    COUNT(CASE WHEN val_vbm IS NULL THEN 1 END) AS val_vbm_nulls,\n    COUNT(CASE WHEN dose_vbm IS NULL THEN 1 END) AS dose_vbm_nulls,\n    COUNT(CASE WHEN dose_unit IS NULL THEN 1 END) AS dose_unit_nulls,\n    COUNT(CASE WHEN dose_form IS NULL THEN 1 END) AS dose_form_nulls\n  FROM delta.`/Volumes/main/default/faers_data/delta/bronze/drug`\n), silver_nulls AS (\n  SELECT \n    'Silver' AS layer,\n    COUNT(CASE WHEN role_cod IS NULL THEN 1 END) AS role_cod_nulls,\n    COUNT(CASE WHEN route IS NULL THEN 1 END) AS route_nulls,\n    COUNT(CASE WHEN dechal IS NULL THEN 1 END) AS dechal_nulls,\n    COUNT(CASE WHEN rechal IS NULL THEN 1 END) AS rechal_nulls,\n    COUNT(CASE WHEN dose_freq IS NULL THEN 1 END) AS dose_freq_nulls,\n    COUNT(CASE WHEN prod_ai IS NULL THEN 1 END) AS prod_ai_nulls,\n    COUNT(CASE WHEN val_vbm IS NULL THEN 1 END) AS val_vbm_nulls,\n    COUNT(CASE WHEN dose_vbm IS NULL THEN 1 END) AS dose_vbm_nulls,\n    COUNT(CASE WHEN dose_unit IS NULL THEN 1 END) AS dose_unit_nulls,\n    COUNT(CASE WHEN dose_form IS NULL THEN 1 END) AS dose_form_nulls\n  FROM delta.`/Volumes/main/default/faers_data/delta/silver/drug`\n) SELECT * FROM bronze_nulls UNION ALL SELECT * FROM silver_nulls\n",
+        "dimensions": [
+          {
+            "name": "layer",
+            "expr": "layer"
+          }
+        ],
+        "measures": [
+          {
+            "name": "role_cod_nulls",
+            "expr": "SUM(role_cod_nulls)"
+          },
+          {
+            "name": "route_nulls",
+            "expr": "SUM(route_nulls)"
+          },
+          {
+            "name": "dechal_nulls",
+            "expr": "SUM(dechal_nulls)"
+          },
+          {
+            "name": "rechal_nulls",
+            "expr": "SUM(rechal_nulls)"
+          },
+          {
+            "name": "dose_freq_nulls",
+            "expr": "SUM(dose_freq_nulls)"
+          },
+          {
+            "name": "prod_ai_nulls",
+            "expr": "SUM(prod_ai_nulls)"
+          },
+          {
+            "name": "val_vbm_nulls",
+            "expr": "SUM(val_vbm_nulls)"
+          },
+          {
+            "name": "dose_vbm_nulls",
+            "expr": "SUM(dose_vbm_nulls)"
+          },
+          {
+            "name": "dose_unit_nulls",
+            "expr": "SUM(dose_unit_nulls)"
+          },
+          {
+            "name": "dose_form_nulls",
+            "expr": "SUM(dose_form_nulls)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "record_counts",
+      "displayName": "Record Counts - Bronze vs Silver",
+      "config": {
+        "version": "1.1",
+        "source": "SELECT 'DEMO' AS table_name, 'Bronze' AS layer, COUNT(*) AS record_count FROM delta.`/Volumes/main/default/faers_data/delta/bronze/demo` UNION ALL SELECT 'DEMO' AS table_name, 'Silver' AS layer, COUNT(*) AS record_count FROM delta.`/Volumes/main/default/faers_data/delta/silver/demo` UNION ALL SELECT 'DRUG' AS table_name, 'Bronze' AS layer, COUNT(*) AS record_count FROM delta.`/Volumes/main/default/faers_data/delta/bronze/drug` UNION ALL SELECT 'DRUG' AS table_name, 'Silver' AS layer, COUNT(*) AS record_count FROM delta.`/Volumes/main/default/faers_data/delta/silver/drug` UNION ALL SELECT 'REAC' AS table_name, 'Bronze' AS layer, COUNT(*) AS record_count FROM delta.`/Volumes/main/default/faers_data/delta/bronze/reac` UNION ALL SELECT 'REAC' AS table_name, 'Silver' AS layer, COUNT(*) AS record_count FROM delta.`/Volumes/main/default/faers_data/delta/silver/reac` UNION ALL SELECT 'OUTC' AS table_name, 'Bronze' AS layer, COUNT(*) AS record_count FROM delta.`/Volumes/main/default/faers_data/delta/bronze/outc` UNION ALL SELECT 'OUTC' AS table_name, 'Silver' AS layer, COUNT(*) AS record_count FROM delta.`/Volumes/main/default/faers_data/delta/silver/outc`\n",
+        "dimensions": [
+          {
+            "name": "table_name",
+            "expr": "table_name"
+          },
+          {
+            "name": "layer",
+            "expr": "layer"
+          }
+        ],
+        "measures": [
+          {
+            "name": "total_records",
+            "expr": "SUM(record_count)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "drugname_normalization",
+      "displayName": "Drugname Normalization Impact",
+      "config": {
+        "version": "1.1",
+        "source": "SELECT 'Bronze' AS layer, COUNT(DISTINCT drugname) AS distinct_drugnames FROM delta.`/Volumes/main/default/faers_data/delta/bronze/drug` UNION ALL SELECT 'Silver' AS layer, COUNT(DISTINCT drugname) AS distinct_drugnames FROM delta.`/Volumes/main/default/faers_data/delta/silver/drug`\n",
+        "dimensions": [
+          {
+            "name": "layer",
+            "expr": "layer"
+          }
+        ],
+        "measures": [
+          {
+            "name": "distinct_count",
+            "expr": "SUM(distinct_drugnames)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "age_distribution",
+      "displayName": "Age Distribution - Before vs After",
+      "config": {
+        "version": "1.1",
+        "source": "SELECT \n  'Before: age_cod = YR only' AS comparison_type,\n  CASE \n    WHEN age IS NULL THEN 'NULL'\n    WHEN age < 18 THEN '< 18'\n    WHEN age BETWEEN 18 AND 35 THEN '18-35'\n    WHEN age BETWEEN 36 AND 50 THEN '36-50'\n    WHEN age BETWEEN 51 AND 65 THEN '51-65'\n    WHEN age > 65 THEN '> 65'\n  END AS age_range,\n  COUNT(*) AS record_count\nFROM delta.`/Volumes/main/default/faers_data/delta/silver/demo` WHERE age_cod = 'YR' AND age IS NOT NULL AND age >= 0 AND age <= 120 GROUP BY CASE \n    WHEN age IS NULL THEN 'NULL'\n    WHEN age < 18 THEN '< 18'\n    WHEN age BETWEEN 18 AND 35 THEN '18-35'\n    WHEN age BETWEEN 36 AND 50 THEN '36-50'\n    WHEN age BETWEEN 51 AND 65 THEN '51-65'\n    WHEN age > 65 THEN '> 65'\n  END\nUNION ALL SELECT \n  'After: All units normalized' AS comparison_type,\n  CASE \n    WHEN age_years IS NULL THEN 'NULL'\n    WHEN age_years < 18 THEN '< 18'\n    WHEN age_years BETWEEN 18 AND 35 THEN '18-35'\n    WHEN age_years BETWEEN 36 AND 50 THEN '36-50'\n    WHEN age_years BETWEEN 51 AND 65 THEN '51-65'\n    WHEN age_years > 65 THEN '> 65'\n  END AS age_range,\n  COUNT(*) AS record_count\nFROM delta.`/Volumes/main/default/faers_data/delta/silver/demo` WHERE age_years IS NOT NULL GROUP BY CASE \n    WHEN age_years IS NULL THEN 'NULL'\n    WHEN age_years < 18 THEN '< 18'\n    WHEN age_years BETWEEN 18 AND 35 THEN '18-35'\n    WHEN age_years BETWEEN 36 AND 50 THEN '36-50'\n    WHEN age_years BETWEEN 51 AND 65 THEN '51-65'\n    WHEN age_years > 65 THEN '> 65'\n  END\n",
+        "dimensions": [
+          {
+            "name": "comparison_type",
+            "expr": "comparison_type"
+          },
+          {
+            "name": "age_range",
+            "expr": "age_range"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "SUM(record_count)"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "3908d39e",
+      "displayName": "Page 1",
+      "layout": [
+        {
+          "widget": {
+            "name": "title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "## 🎯 FAERS Silver Layer - Data Quality Impact Analysis\n",
+                "### Before & After Comparison\n",
+                "\n",
+                "This dashboard demonstrates the **measurable impact** of data cleaning transformations applied in the Silver Layer of the FAERS pipeline (2022Q4-2023Q4)."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "section1_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### 1️⃣ Null Handling Impact - DEMO Table\n",
+                "**Transformation**: All NULL categorical values replaced with 'UNK'"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "demo_nulls",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "demo_null_comparison",
+                  "fields": [
+                    {
+                      "name": "layer",
+                      "expression": "`layer`"
+                    },
+                    {
+                      "name": "measure(sex_nulls)",
+                      "expression": "MEASURE(`sex_nulls`)"
+                    },
+                    {
+                      "name": "measure(occp_cod_nulls)",
+                      "expression": "MEASURE(`occp_cod_nulls`)"
+                    },
+                    {
+                      "name": "measure(reporter_country_nulls)",
+                      "expression": "MEASURE(`reporter_country_nulls`)"
+                    },
+                    {
+                      "name": "measure(age_cod_nulls)",
+                      "expression": "MEASURE(`age_cod_nulls`)"
+                    },
+                    {
+                      "name": "measure(i_f_code_nulls)",
+                      "expression": "MEASURE(`i_f_code_nulls`)"
+                    },
+                    {
+                      "name": "measure(mfr_num_nulls)",
+                      "expression": "MEASURE(`mfr_num_nulls`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "DEMO Null Counts - Before vs After",
+                "showTitle": true
+              },
+              "mark": {
+                "layout": "group"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "layer",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(sex_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(occp_cod_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(reporter_country_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(age_cod_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(i_f_code_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(mfr_num_nulls)"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "drug_nulls",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "drug_null_comparison",
+                  "fields": [
+                    {
+                      "name": "layer",
+                      "expression": "`layer`"
+                    },
+                    {
+                      "name": "measure(role_cod_nulls)",
+                      "expression": "MEASURE(`role_cod_nulls`)"
+                    },
+                    {
+                      "name": "measure(dose_freq_nulls)",
+                      "expression": "MEASURE(`dose_freq_nulls`)"
+                    },
+                    {
+                      "name": "measure(prod_ai_nulls)",
+                      "expression": "MEASURE(`prod_ai_nulls`)"
+                    },
+                    {
+                      "name": "measure(dose_vbm_nulls)",
+                      "expression": "MEASURE(`dose_vbm_nulls`)"
+                    },
+                    {
+                      "name": "measure(dose_unit_nulls)",
+                      "expression": "MEASURE(`dose_unit_nulls`)"
+                    },
+                    {
+                      "name": "measure(dose_form_nulls)",
+                      "expression": "MEASURE(`dose_form_nulls`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "DRUG Null Counts - Before vs After",
+                "showTitle": true
+              },
+              "mark": {
+                "layout": "group"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "layer",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(role_cod_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(dose_freq_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(prod_ai_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(dose_vbm_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(dose_unit_nulls)"
+                    },
+                    {
+                      "fieldName": "measure(dose_form_nulls)"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 4,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "section2_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### 2️⃣ Deduplication Impact\n",
+                "**Transformation**: Removed duplicates using window functions with completeness scoring"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 8,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "section3_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### 3️⃣ String Normalization Impact - Drugname\n",
+                "**Transformation**: trim() + upper() + remove non-alphanumeric characters"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 14,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "drugname_impact",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "drugname_normalization",
+                  "fields": [
+                    {
+                      "name": "layer",
+                      "expression": "`layer`"
+                    },
+                    {
+                      "name": "measure(distinct_count)",
+                      "expression": "MEASURE(`distinct_count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Distinct Drugname Count - Normalization Impact",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "layer",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(distinct_count)",
+                  "axis": {
+                    "title": "Distinct Drugname Count"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 16,
+            "width": 12,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "record_counts",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "record_counts",
+                  "fields": [
+                    {
+                      "name": "layer",
+                      "expression": "`layer`"
+                    },
+                    {
+                      "name": "table_name",
+                      "expression": "`table_name`"
+                    },
+                    {
+                      "name": "measure(total_records)",
+                      "expression": "MEASURE(`total_records`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Record Counts by Table - Deduplication Impact",
+                "showTitle": true
+              },
+              "mark": {
+                "layout": "group"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "table_name",
+                  "axis": {
+                    "title": "Table"
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(total_records)",
+                  "axis": {
+                    "title": "Total Records"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "layer",
+                  "legend": {
+                    "title": "Layer"
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 12,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "section4_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### 4️⃣ Age Normalization Impact\n",
+                "**Transformation**: All age units (YR, DEC, MON, WK, DY, HR) normalized to standardized `age_years` field with 0-120 range validation\n",
+                "\n",
+                "**Before**: Only records with `age_cod = 'YR'` could be used for age analysis (~subset of data)  \n",
+                "**After**: ALL age records normalized to years → **Expanded usable age data from subset to complete dataset!**"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 24,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "summary",
+            "multilineTextboxSpec": {
+              "lines": [
+                "---\n",
+                "\n",
+                "### ✅ Overall Data Quality Impact Summary\n",
+                "\n",
+                "**Key Achievements:**\n",
+                "\n",
+                "* **Null Handling**: All categorical NULL values replaced with 'UNK' in 22+ columns across DEMO and DRUG tables → **100% categorical data completeness**\n",
+                "* **Deduplication**: Window function-based deduplication removed:\n",
+                "    - **DRUG**: 783 duplicate records\n",
+                "    - **REAC**: 109,081 duplicate records<br>  → **Improved data accuracy and reduced storage**\n",
+                "* **String Normalization**: Drugname standardization (trim + upper + remove non-alphanumeric) → **Reduced distinct drug name variations** for accurate aggregation in analytics\n",
+                "* **Age Normalization**: All age units (YR, DEC, MON, WK, DY, HR) converted to standardized `age_years` field with 0-120 validation → **Consistent age representation** across all records\n",
+                "\n",
+                "**Result**: Silver Layer data is **clean, consistent, validated, and ready for analysis in the Gold Layer**! 🎯"
+              ],
+              "verticalAlign": "VERTICAL_ALIGN_CENTER"
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 37,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "d0d45b52",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "age_distribution",
+                  "fields": [
+                    {
+                      "name": "comparison_type",
+                      "expression": "`comparison_type`"
+                    },
+                    {
+                      "name": "age_range",
+                      "expression": "`age_range`"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Age Distribution - YR Only vs All Normalized",
+                "showTitle": true
+              },
+              "mark": {
+                "layout": "group"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "age_range",
+                  "axis": {
+                    "title": "Age Range"
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(count)",
+                  "axis": {
+                    "title": "Record Count"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "comparison_type",
+                  "legend": {
+                    "title": "Stage"
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 30,
+            "width": 12,
+            "height": 7
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
