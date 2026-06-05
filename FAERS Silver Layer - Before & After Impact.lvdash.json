@@ -199,10 +199,10 @@
             "name": "title",
             "multilineTextboxSpec": {
               "lines": [
-                "## 🎯 FAERS Silver Layer - Data Quality Impact Analysis\n",
-                "### Before & After Comparison\n",
+                "## 🎯 FAERS Camada Silver - Análise de Impacto na Qualidade dos Dados\n",
+                "### Comparação Antes e Depois\n",
                 "\n",
-                "This dashboard demonstrates the **measurable impact** of data cleaning transformations applied in the Silver Layer of the FAERS pipeline (2022Q4-2023Q4)."
+                "Este painel demonstra o **impacto mensurável** das transformações de limpeza de dados aplicadas na Camada Silver do pipeline FAERS (2022Q4-2023Q4)."
               ]
             }
           },
@@ -218,8 +218,8 @@
             "name": "section1_title",
             "multilineTextboxSpec": {
               "lines": [
-                "### 1️⃣ Null Handling Impact - DEMO Table\n",
-                "**Transformation**: All NULL categorical values replaced with 'UNK'"
+                "### 1️⃣ Impacto do Tratamento de Nulos - Tabela DEMO\n",
+                "**Transformação**: Todos os valores NULL categóricos substituídos por 'UNK'"
               ]
             }
           },
@@ -275,7 +275,7 @@
             "spec": {
               "version": 3,
               "frame": {
-                "title": "DEMO Null Counts - Before vs After",
+                "title": "Contagens de Nulos DEMO - Antes vs Depois",
                 "showTitle": true
               },
               "mark": {
@@ -369,7 +369,7 @@
             "spec": {
               "version": 3,
               "frame": {
-                "title": "DRUG Null Counts - Before vs After",
+                "title": "Contagens de Nulos DRUG - Antes vs Depois",
                 "showTitle": true
               },
               "mark": {
@@ -423,8 +423,8 @@
             "name": "section2_title",
             "multilineTextboxSpec": {
               "lines": [
-                "### 2️⃣ Deduplication Impact\n",
-                "**Transformation**: Removed duplicates using window functions with completeness scoring"
+                "### 2️⃣ Impacto da Desduplicação\n",
+                "**Transformação**: Duplicados removidos utilizando funções de janela com pontuação de completude"
               ]
             }
           },
@@ -440,8 +440,8 @@
             "name": "section3_title",
             "multilineTextboxSpec": {
               "lines": [
-                "### 3️⃣ String Normalization Impact - Drugname\n",
-                "**Transformation**: trim() + upper() + remove non-alphanumeric characters"
+                "### 3️⃣ Impacto da Normalização de Strings - Drugname\n",
+                "**Transformação**: trim() + upper() + remoção de caracteres não alfanuméricos"
               ]
             }
           },
@@ -477,7 +477,7 @@
             "spec": {
               "version": 3,
               "frame": {
-                "title": "Distinct Drugname Count - Normalization Impact",
+                "title": "Contagem Distinta de Drugname - Impacto da Normalização",
                 "showTitle": true
               },
               "widgetType": "bar",
@@ -491,7 +491,7 @@
                 "y": {
                   "fieldName": "measure(distinct_count)",
                   "axis": {
-                    "title": "Distinct Drugname Count"
+                    "title": "Contagem Distinta de Drugname"
                   },
                   "scale": {
                     "type": "quantitative"
@@ -536,7 +536,7 @@
             "spec": {
               "version": 3,
               "frame": {
-                "title": "Record Counts by Table - Deduplication Impact",
+                "title": "Contagens de Registos por Tabela - Impacto da Desduplicação",
                 "showTitle": true
               },
               "mark": {
@@ -547,7 +547,7 @@
                 "x": {
                   "fieldName": "table_name",
                   "axis": {
-                    "title": "Table"
+                    "title": "Tabela"
                   },
                   "scale": {
                     "type": "categorical"
@@ -556,7 +556,7 @@
                 "y": {
                   "fieldName": "measure(total_records)",
                   "axis": {
-                    "title": "Total Records"
+                    "title": "Total de Registos"
                   },
                   "scale": {
                     "type": "quantitative"
@@ -565,7 +565,7 @@
                 "color": {
                   "fieldName": "layer",
                   "legend": {
-                    "title": "Layer"
+                    "title": "Camada"
                   },
                   "scale": {
                     "type": "categorical"
@@ -586,11 +586,11 @@
             "name": "section4_title",
             "multilineTextboxSpec": {
               "lines": [
-                "### 4️⃣ Age Normalization Impact\n",
-                "**Transformation**: All age units (YR, DEC, MON, WK, DY, HR) normalized to standardized `age_years` field with 0-120 range validation\n",
+                "### 4️⃣ Impacto da Normalização de Idades\n",
+                "**Transformação**: Todas as unidades de idade (YR, DEC, MON, WK, DY, HR) normalizadas para o campo padronizado `age_years` com validação de intervalo 0-120\n",
                 "\n",
-                "**Before**: Only records with `age_cod = 'YR'` could be used for age analysis (~subset of data)  \n",
-                "**After**: ALL age records normalized to years → **Expanded usable age data from subset to complete dataset!**"
+                "**Antes**: Apenas registos com `age_cod = 'YR'` podiam ser utilizados para análise de idade (~subconjunto dos dados)  \n",
+                "**Depois**: TODAS as idades normalizadas para anos → **Dados de idade utilizáveis expandidos de subconjunto para conjunto completo!**"
               ]
             }
           },
@@ -608,20 +608,19 @@
               "lines": [
                 "---\n",
                 "\n",
-                "### ✅ Overall Data Quality Impact Summary\n",
+                "### ✅ Resumo Geral do Impacto na Qualidade dos Dados\n",
                 "\n",
-                "**Key Achievements:**\n",
+                "**Principais Conquistas:**\n",
                 "\n",
-                "* **Null Handling**: All categorical NULL values replaced with 'UNK' in 22+ columns across DEMO and DRUG tables → **100% categorical data completeness**\n",
-                "* **Deduplication**: Window function-based deduplication removed:\n",
-                "    - **DRUG**: 783 duplicate records\n",
-                "    - **REAC**: 109,081 duplicate records<br>  → **Improved data accuracy and reduced storage**\n",
-                "* **String Normalization**: Drugname standardization (trim + upper + remove non-alphanumeric) → **Reduced distinct drug name variations** for accurate aggregation in analytics\n",
-                "* **Age Normalization**: All age units (YR, DEC, MON, WK, DY, HR) converted to standardized `age_years` field with 0-120 validation → **Consistent age representation** across all records\n",
+                "* **Tratamento de Nulos**: Todos os valores NULL categóricos substituídos por 'UNK' em 22+ colunas nas tabelas DEMO e DRUG → **100% de completude de dados categóricos**\n",
+                "* **Desduplicação**: Desduplicação baseada em funções de janela removeu:\n",
+                "    - **DRUG**: 783 registos duplicados\n",
+                "    - **REAC**: 109.081 registos duplicados<br>  → **Melhoria na precisão dos dados e redução do armazenamento**\n",
+                "* **Normalização de Strings**: Padronização de Drugname (trim + upper + remoção de caracteres não alfanuméricos) → **Redução de variações distintas de nomes de medicamentos** para agregação precisa em análises\n",
+                "* **Normalização de Idades**: Todas as unidades de idade (YR, DEC, MON, WK, DY, HR) convertidas para o campo padronizado `age_years` com validação 0-120 → **Representação consistente de idades** em todos os registos\n",
                 "\n",
-                "**Result**: Silver Layer data is **clean, consistent, validated, and ready for analysis in the Gold Layer**! 🎯"
-              ],
-              "verticalAlign": "VERTICAL_ALIGN_CENTER"
+                "**Resultado**: Os dados da Camada Silver estão **limpos, consistentes, validados e prontos para análise na Camada Gold**! 🎯"
+              ]
             }
           },
           "position": {
@@ -660,7 +659,7 @@
             "spec": {
               "version": 3,
               "frame": {
-                "title": "Age Distribution - YR Only vs All Normalized",
+                "title": "Distribuição de Idades - Apenas YR vs Todas Normalizadas",
                 "showTitle": true
               },
               "mark": {
@@ -671,7 +670,7 @@
                 "x": {
                   "fieldName": "age_range",
                   "axis": {
-                    "title": "Age Range"
+                    "title": "Intervalo de Idade"
                   },
                   "scale": {
                     "type": "categorical"
@@ -680,7 +679,7 @@
                 "y": {
                   "fieldName": "measure(count)",
                   "axis": {
-                    "title": "Record Count"
+                    "title": "Contagem de Registos"
                   },
                   "scale": {
                     "type": "quantitative"
@@ -689,7 +688,7 @@
                 "color": {
                   "fieldName": "comparison_type",
                   "legend": {
-                    "title": "Stage"
+                    "title": "Fase"
                   },
                   "scale": {
                     "type": "categorical"
